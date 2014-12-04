@@ -1,0 +1,36 @@
+{
+    "name": "twg/omnipay-paymentech-orbital",
+    "type": "library",
+    "description": "Paymentech Orbital driver for the Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "chase",
+        "paymentech",
+        "orbital",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://github.com/twg/omnipay-paymentech-orbital",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt MacAulay",
+            "email": "mac@twg.ca"
+        },
+        {
+            "name": "Omnipay Contributors",
+            "homepage": "https://github.com/twg/omnipay-paymentech-orbital/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\PaymentechOrbital\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    }
+}
