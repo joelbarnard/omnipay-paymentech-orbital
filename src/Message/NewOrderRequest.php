@@ -49,9 +49,10 @@ abstract class NewOrderRequest extends AbstractRequest
             $newOrder->AVSDestcountryCode = $card->getShippingCountry();
         }
 
-        $newOrder->OrderID  = $this->getOrderId();
-        $newOrder->Amount   = number_format($this->getAmount(), 2, '', '');
-        $newOrder->Comments = $this->getComments();
+        $newOrder->OrderID   = $this->getOrderId();
+        $newOrder->Amount    = number_format($this->getAmount(), 2, '', '');
+        $newOrder->Comments  = $this->getComments();
+        $newOrder->TxRefNum = $this->getTxRefNum();
 
         return $data;
     }
