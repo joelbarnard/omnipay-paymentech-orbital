@@ -45,6 +45,26 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Approved', $response->getMessage());
     }
 
+    public function testPurchaseError()
+    {
+        $this->setMockHttpResponse('ErrorResponse.txt');
+        $card = $this->getValidCard();
+        $card['number'] = 'zzz';
+        $request = $this->gateway->purchase([
+          'amount' => '12.00',
+          'orderId' => '123',
+          'card'   => $card
+        ]);
+
+        $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\PurchaseRequest', $request);
+        $this->assertSame('12.00', $request->getAmount());
+
+        $response = $request->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('Error validating card/account number range', $response->getMessage());
+    }
+
     public function testAuthorizeSuccess()
     {
         $this->setMockHttpResponse('AuthorizeSuccess.txt');

@@ -63,7 +63,13 @@ abstract class NewOrderRequest extends AbstractRequest
 
     protected function createResponse($data)
     {
-        return $this->response = new NewOrderResponse($this, $data);
+        if($data->NewOrderResp) {
+            return $this->response = new NewOrderResponse($this, $data);
+        } else if($data->QuickResp) {
+            return $this->response = new QuickResponse($this, $data);
+        } else {
+            throw new InvalidResponseException();
+        }
     }
 
 }
