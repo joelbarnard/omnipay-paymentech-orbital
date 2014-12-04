@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Thu, 04 Dec 2014 20:43:44 GMT
+content-type: text/plain; charset=ISO-8859-1
+content-length: 1161
+content-transfer-encoding: text/xml
+document-type: Response
+mime-version: 1.0
+Connection: close
+
+<?xml version="1.0" encoding="UTF-8"?><Response><NewOrderResp><IndustryType></IndustryType><MessageType>R</MessageType><MerchantID>700000005894</MerchantID><TerminalID>001</TerminalID><CardBrand>VI</CardBrand><AccountNum>4111111111111111</AccountNum><OrderID>123</OrderID><TxRefNum>5480C780809EEFBC09213F79CEA968BDEE0954AD</TxRefNum><TxRefIdx>2</TxRefIdx><ProcStatus>0</ProcStatus><ApprovalStatus>1</ApprovalStatus><RespCode></RespCode><AVSRespCode></AVSRespCode><CVV2RespCode></CVV2RespCode><AuthCode></AuthCode><RecurringAdviceCd></RecurringAdviceCd><CAVVRespCode></CAVVRespCode><StatusMsg></StatusMsg><RespMsg></RespMsg><HostRespCode></HostRespCode><HostAVSRespCode></HostAVSRespCode><HostCVV2RespCode></HostCVV2RespCode><CustomerRefNum></CustomerRefNum><CustomerName></CustomerName><ProfileProcStatus></ProfileProcStatus><CustomerProfileMessage></CustomerProfileMessage><RespTime>154344</RespTime><PartialAuthOccurred></PartialAuthOccurred><RequestedAmount></RequestedAmount><RedeemedAmount></RedeemedAmount><RemainingBalance></RemainingBalance><CountryFraudFilterStatus></CountryFraudFilterStatus><IsoCountryCode></IsoCountryCode></NewOrderResp></Response>

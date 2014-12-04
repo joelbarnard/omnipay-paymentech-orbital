@@ -45,7 +45,7 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Approved', $response->getMessage());
     }
 
-    public function testAuthorize()
+    public function testAuthorizeSuccess()
     {
         $this->setMockHttpResponse('AuthorizeSuccess.txt');
         $request = $this->gateway->authorize([
@@ -66,14 +66,22 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('Approved', $response->getMessage());
     }
 
-    public function testRefund()
+    public function testRefundSuccess()
     {
+        $this->setMockHttpResponse('RefundSuccess.txt');
         $request = $this->gateway->refund([
           'amount' => '12.00',
+          'orderId' => '123',
           'card'   => $this->getValidCard()
         ]);
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\RefundRequest', $request);
         $this->assertSame('12.00', $request->getAmount());
+
+        $response = $request->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('5480C780809EEFBC09213F79CEA968BDEE0954AD', $response->getTransactionReference());
+        $this->assertTrue($response->isApproved());
     }
 }
