@@ -13,7 +13,7 @@ class Gateway extends AbstractGateway
 {
     public function getName()
     {
-        return 'PaymentechOrbital';
+        return 'Paymentech Orbital';
     }
 
     public function getDefaultParameters()
