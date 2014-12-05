@@ -50,7 +50,7 @@ abstract class NewOrderRequest extends AbstractRequest
         }
 
         $newOrder->OrderID   = $this->getOrderId();
-        $newOrder->Amount    = number_format($this->getAmount(), 2, '', '');
+        $newOrder->Amount    = $this->getAmountInteger();
         $newOrder->Comments  = $this->getComments();
         $newOrder->TxRefNum = $this->getTxRefNum();
 
