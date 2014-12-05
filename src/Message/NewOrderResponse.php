@@ -3,11 +3,12 @@
 namespace Omnipay\PaymentechOrbital\Message;
 
 use SimpleXMLElement;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  *  Paymentech Orbital Response
  */
-class NewOrderResponse extends Response
+class NewOrderResponse extends AbstractResponse
 {
     public function getTransactionReference()
     {
@@ -27,5 +28,10 @@ class NewOrderResponse extends Response
     public function getMessage()
     {
         return $this->data->NewOrderResp->StatusMsg->__toString();
+    }
+
+    public function isSuccessful()
+    {
+        return $this->data->NewOrderResp->ProcStatus == '0';
     }
 }

@@ -3,6 +3,7 @@
 namespace Omnipay\PaymentechOrbital\Message;
 
 use SimpleXMLElement;
+use Omnipay\Common\Message\AbstractResponse;
 
 /**
  *  Paymentech Orbital Quick Response
@@ -11,7 +12,7 @@ use SimpleXMLElement;
  *         message request, the gateway will generate a quick error message back to the requestor. This
  *         error response takes the form of a "Quick Response".
  */
-class QuickResponse extends Response
+class QuickResponse extends AbstractResponse
 {
     public function getCode()
     {
@@ -21,5 +22,10 @@ class QuickResponse extends Response
     public function getMessage()
     {
         return $this->data->QuickResp->StatusMsg->__toString();
+    }
+
+    public function isSuccessful()
+    {
+        return false;
     }
 }

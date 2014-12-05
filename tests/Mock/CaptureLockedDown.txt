@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Date: Fri, 05 Dec 2014 18:42:01 GMT
+content-type: text/plain; charset=ISO-8859-1
+content-length: 312
+content-transfer-encoding: text/xml
+document-type: Response
+mime-version: 1.0
+Connection: close
+
+<?xml version="1.0" encoding="UTF-8"?><Response><QuickResp><TxRefNum>5480D0B04F73526665D2357BAF54586DA27654E9</TxRefNum><TxRefIdx>0</TxRefIdx><ProcStatus>882</ProcStatus><StatusMsg>This transaction is locked down. You cannot mark or unmark it.</StatusMsg><ApprovalStatus>2</ApprovalStatus></QuickResp></Response>

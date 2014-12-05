@@ -123,4 +123,42 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('5480DBB1662A5CC673A443AEA264698837FD5499', $response->getTransactionReference());
         $this->assertTrue($response->isApproved());
     }
+
+    public function testCaptureLockedDown()
+    {
+        $this->setMockHttpResponse('CaptureLockedDown.txt');
+        $request = $this->gateway->capture(array(
+          'amount' => '12.00',
+          'orderId' => '123',
+          'txRefNum' => 'abc'
+        ));
+
+        $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\MarkForCaptureRequest', $request);
+        $this->assertSame('12.00', $request->getAmount());
+
+        $response = $request->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('This transaction is locked down. You cannot mark or unmark it.', $response->getMessage());
+    }
+
+    public function testCaptureSuccess()
+    {
+        $this->setMockHttpResponse('CaptureSuccess.txt');
+        $request = $this->gateway->capture(array(
+          'amount' => '1.00',
+          'orderId' => '123',
+          'txRefNum' => '5481FDB3206618C4C114E587D23A16FCF10C5396'
+        ));
+
+        $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\MarkForCaptureRequest', $request);
+        $this->assertSame('1.00', $request->getAmount());
+
+        $response = $request->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('5481FDB3206618C4C114E587D23A16FCF10C5396', $response->getTransactionReference());
+        $this->assertTrue($response->isApproved());
+        $this->assertSame('100', $response->getAmount());
+    }
 }
