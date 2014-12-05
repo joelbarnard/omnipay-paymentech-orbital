@@ -169,14 +169,4 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('txRefNum', $value);
     }
-
-    public function getTestMode()
-    {
-        return $this->getParameter('testMode');
-    }
-
-    public function setTestMode($value)
-    {
-        return $this->setParameter('testMode', $value);
-    }
 }
