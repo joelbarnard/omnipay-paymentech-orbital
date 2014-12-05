@@ -15,7 +15,7 @@ class PurchaseRequest extends NewOrderRequest
 
     public function getData()
     {
-        $this->validate('amount', 'card');
+        $this->validate('amount', 'card', 'orderId');
         return parent::getData();
     }
 }
