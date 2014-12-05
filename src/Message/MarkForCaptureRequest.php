@@ -33,7 +33,6 @@ class MarkForCaptureRequest extends AbstractRequest
 
     protected function createResponse($data)
     {
-      print_r($data);
         if ($data->MarkForCaptureResp) {
             return $this->response = new MarkForCaptureResponse($this, $data);
         } elseif ($data->QuickResp) {
