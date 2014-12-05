@@ -25,7 +25,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $this->getEndpoint(),
             $this->getHeaders(),
             $data,
-            array('exceptions' => false))->send();
+            array('exceptions' => false)
+        )
+        ->send();
         return $this->createResponse($httpResponse->xml());
     }
 

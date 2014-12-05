@@ -23,7 +23,7 @@ abstract class NewOrderRequest extends AbstractRequest
         $newOrder->MerchantID                = $this->getMerchantId();
         $newOrder->TerminalID                = $this->getTerminalId();
 
-        if($card = $this->getCard()) {
+        if ($card = $this->getCard()) {
             $newOrder->AccountNum         = $card->getNumber();
             $newOrder->Exp                = $card->getExpiryDate('my');
             $newOrder->CurrencyCode       = $this->getCurrencyCode();
@@ -64,13 +64,12 @@ abstract class NewOrderRequest extends AbstractRequest
 
     protected function createResponse($data)
     {
-        if($data->NewOrderResp) {
+        if ($data->NewOrderResp) {
             return $this->response = new NewOrderResponse($this, $data);
-        } else if($data->QuickResp) {
+        } elseif ($data->QuickResp) {
             return $this->response = new QuickResponse($this, $data);
         } else {
             throw new InvalidResponseException();
         }
     }
-
 }

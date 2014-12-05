@@ -9,7 +9,8 @@ use SimpleXMLElement;
  */
 class PurchaseRequest extends NewOrderRequest
 {
-    protected function getMessageType() {
+    protected function getMessageType()
+    {
         return 'AC';
     }
 

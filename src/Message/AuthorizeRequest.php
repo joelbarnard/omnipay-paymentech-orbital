@@ -9,7 +9,8 @@ use SimpleXMLElement;
  */
 class AuthorizeRequest extends NewOrderRequest
 {
-    protected function getMessageType() {
+    protected function getMessageType()
+    {
         return 'A';
     }
 

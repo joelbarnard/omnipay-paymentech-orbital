@@ -9,7 +9,8 @@ use SimpleXMLElement;
  */
 class RefundRequest extends NewOrderRequest
 {
-    protected function getMessageType() {
+    protected function getMessageType()
+    {
         return 'R';
     }
 
