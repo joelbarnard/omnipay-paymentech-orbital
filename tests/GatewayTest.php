@@ -11,7 +11,7 @@ class GatewayTest extends GatewayTestCase
         parent::setUp();
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
-        $this->gateway->initialize([
+        $this->gateway->initialize(array(
           'username'         => 'test',
           'password'         => 'test',
           'merchantId'       => 'test',
@@ -21,17 +21,17 @@ class GatewayTest extends GatewayTestCase
           'testMode'         => true,
           'currencyCode'     => 840,
           'currencyExponent' => 2
-        ]);
+        ));
     }
 
     public function testPurchaseSuccess()
     {
         $this->setMockHttpResponse('PurchaseSuccess.txt');
-        $request = $this->gateway->purchase([
+        $request = $this->gateway->purchase(array(
           'amount' => '12.00',
           'orderId' => '123',
           'card'   => $this->getValidCard()
-        ]);
+        ));
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\PurchaseRequest', $request);
         $this->assertSame('12.00', $request->getAmount());
@@ -50,11 +50,11 @@ class GatewayTest extends GatewayTestCase
         $this->setMockHttpResponse('ErrorResponse.txt');
         $card = $this->getValidCard();
         $card['number'] = 'zzz';
-        $request = $this->gateway->purchase([
+        $request = $this->gateway->purchase(array(
           'amount' => '12.00',
           'orderId' => '123',
           'card'   => $card
-        ]);
+        ));
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\PurchaseRequest', $request);
         $this->assertSame('12.00', $request->getAmount());
@@ -68,11 +68,11 @@ class GatewayTest extends GatewayTestCase
     public function testAuthorizeSuccess()
     {
         $this->setMockHttpResponse('AuthorizeSuccess.txt');
-        $request = $this->gateway->authorize([
+        $request = $this->gateway->authorize(array(
           'amount' => '12.00',
           'orderId' => '123',
           'card'   => $this->getValidCard()
-        ]);
+        ));
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\AuthorizeRequest', $request);
         $this->assertSame('12.00', $request->getAmount());
@@ -89,11 +89,11 @@ class GatewayTest extends GatewayTestCase
     public function testRefundSuccess()
     {
         $this->setMockHttpResponse('RefundSuccess.txt');
-        $request = $this->gateway->refund([
+        $request = $this->gateway->refund(array(
           'amount' => '12.00',
           'orderId' => '123',
           'card'   => $this->getValidCard()
-        ]);
+        ));
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\RefundRequest', $request);
         $this->assertSame('12.00', $request->getAmount());
@@ -108,11 +108,11 @@ class GatewayTest extends GatewayTestCase
     public function testRefundTxSuccess()
     {
         $this->setMockHttpResponse('RefundTxSuccess.txt');
-        $request = $this->gateway->refund([
+        $request = $this->gateway->refund(array(
           'amount' => '12.00',
           'orderId' => '123',
           'txRefNum' => '5480D0B04F73526665D2357BAF54586DA27654E9'
-        ]);
+        ));
 
         $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\RefundRequest', $request);
         $this->assertSame('12.00', $request->getAmount());

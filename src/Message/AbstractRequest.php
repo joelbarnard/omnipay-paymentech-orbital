@@ -9,24 +9,23 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     protected $retryCount = 0;
 
-    protected $testUrls = [
+    protected $testUrls = array(
         'https://orbitalvar1.paymentech.net/authorize',
         'https://orbitalvar2.paymentech.net/authorize'
-    ];
+    );
 
-    protected $liveUrls = [
+    protected $liveUrls = array(
         'https://orbital1.paymentech.net/authorize',
         'https://orbital2.paymentech.net/authorize'
-    ];
+    );
 
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->post($this->getEndpoint(),
+        $httpResponse = $this->httpClient->post(
+            $this->getEndpoint(),
             $this->getHeaders(),
             $data,
-            [
-                'exceptions' => false
-            ])->send();
+            array('exceptions' => false))->send();
         return $this->createResponse($httpResponse->xml());
     }
 
@@ -34,13 +33,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     protected function getHeaders()
     {
-        return [
+        return array(
             'MIME-Version' => '1.0',
             'Content-type' => 'Application/PTI56',
             'Content-transfer-encoding' => 'text',
             'Request-number' => '1',
             'Document-type' => 'Request'
-        ];
+        );
     }
 
     public function getEndpoint()
