@@ -140,4 +140,9 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\PaymentechOrbital\Message\MarkForCaptureRequest', $parameters);
     }
+
+    public function void(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\PaymentechOrbital\Message\ReversalRequest', $parameters);
+    }
 }
