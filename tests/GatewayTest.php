@@ -179,4 +179,22 @@ class GatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertSame('5487548B68A57AB7CA37FAA92253F3EBC3D953DE', $response->getTransactionReference());
     }
+
+    public function testReversalInvalidAmount()
+    {
+        $this->setMockHttpResponse('ReversalInvalidAmount.txt');
+        $request = $this->gateway->void(array(
+          'amount' => '11.00',
+          'orderId' => '123',
+          'txRefNum' => '5487548B68A57AB7CA37FAA92253F3EBC3D953DE'
+        ));
+
+        $this->assertInstanceOf('\Omnipay\PaymentechOrbital\Message\ReversalRequest', $request);
+        $this->assertSame('11.00', $request->getAmount());
+
+        $response = $request->send();
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertSame('The amount requested is invalid. Requested: 1100, Allowed: 600.', $response->getMessage());
+    }
 }
