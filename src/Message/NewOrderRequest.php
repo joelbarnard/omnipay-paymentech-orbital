@@ -2,6 +2,7 @@
 
 namespace Omnipay\PaymentechOrbital\Message;
 
+use Omnipay\Common\Exception\InvalidResponseException;
 use SimpleXMLElement;
 
 /**
