@@ -1,5 +1,5 @@
 {
-    "name": "twg/omnipay-paymentech-orbital",
+    "name": "joelbarnard/omnipay-paymentech-orbital",
     "type": "library",
     "description": "Paymentech Orbital driver for the Omnipay payment processing library",
     "keywords": [
@@ -12,7 +12,7 @@
         "pay",
         "payment"
     ],
-    "homepage": "https://github.com/twg/omnipay-paymentech-orbital",
+    "homepage": "https://github.com/joelbarnard/omnipay-paymentech-orbital",
     "license": "MIT",
     "authors": [
         {
