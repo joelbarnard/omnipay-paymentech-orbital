@@ -29,31 +29,42 @@ abstract class NewOrderRequest extends AbstractRequest
             $newOrder->Exp                = $card->getExpiryDate('my');
             $newOrder->CurrencyCode       = $this->getCurrencyCode();
             $newOrder->CurrencyExponent   = $this->getCurrencyExponent();
-            $newOrder->CardSecVal         = $card->getCvv();
 
-            $newOrder->AVSzip             = $card->getBillingPostcode();
-            $newOrder->AVSaddress1        = $card->getBillingAddress1();
-            $newOrder->AVSaddress2        = $card->getBillingAddress2();
-            $newOrder->AVScity            = $card->getBillingCity();
-            $newOrder->AVSstate           = $card->getBillingState();
-            $newOrder->AVSphoneNum        = $card->getBillingPhone();
+            if($card->getCvv()) {
+                $newOrder->CardSecValInd    =1;
+                $newOrder->CardSecVal         = $card->getCvv();
+            }
+            else {
+                $newOrder->CardSecValInd    =1;
+              //  $newOrder->CardSecVal         = $card->getCvv();
+            }
+
+         //   $newOrder->AVSzip             = $card->getBillingPostcode();
+         //   $newOrder->AVSaddress1        = $card->getBillingAddress1();
+         //   $newOrder->AVSaddress2        = $card->getBillingAddress2();
+         //   $newOrder->AVScity            = $card->getBillingCity();
+         //   $newOrder->AVSstate           = $card->getBillingState();
+         //   $newOrder->AVSphoneNum        = $card->getBillingPhone();
             $newOrder->AVSname            = $card->getBillingName();
-            $newOrder->AVScountryCode     = $card->getBillingCountry();
+         //   $newOrder->AVScountryCode     = $card->getBillingCountry();
 
-            $newOrder->AVSDestzip         = $card->getShippingPostcode();
-            $newOrder->AVSDestaddress1    = $card->getShippingAddress1();
-            $newOrder->AVSDestaddress2    = $card->getShippingAddress2();
-            $newOrder->AVSDestcity        = $card->getShippingCity();
-            $newOrder->AVSDeststate       = $card->getShippingState();
-            $newOrder->AVSDestphoneNum    = $card->getShippingPhone();
-            $newOrder->AVSDestname        = $card->getShippingName();
-            $newOrder->AVSDestcountryCode = $card->getShippingCountry();
+        //    $newOrder->AVSDestzip         = $card->getShippingPostcode();
+        //    $newOrder->AVSDestaddress1    = $card->getShippingAddress1();
+        //    $newOrder->AVSDestaddress2    = $card->getShippingAddress2();
+        //    $newOrder->AVSDestcity        = $card->getShippingCity();
+         //   $newOrder->AVSDeststate       = $card->getShippingState();
+         //   $newOrder->AVSDestphoneNum    = $card->getShippingPhone();
+         //   $newOrder->AVSDestname        = $card->getShippingName();
+          //  $newOrder->AVSDestcountryCode = $card->getShippingCountry();
         }
+
+        $newOrder->CustomerProfileFromOrderInd = 'A';
+        $newOrder->CustomerProfileOrderOverrideInd = 'NO';
 
         $newOrder->OrderID   = $this->getOrderId();
         $newOrder->Amount    = $this->getAmountInteger();
-        $newOrder->Comments  = $this->getComments();
-        $newOrder->TxRefNum = $this->getTxRefNum();
+        //$newOrder->Comments  = $this->getComments();
+      //  $newOrder->TxRefNum = $this->getTxRefNum();
 
         return $data;
     }

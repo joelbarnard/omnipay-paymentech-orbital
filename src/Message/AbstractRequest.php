@@ -27,7 +27,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $data,
             array('exceptions' => false)
         )
-        ->send();
+        ->send(); 
         return $this->createResponse($httpResponse->xml());
     }
 
@@ -35,12 +35,15 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     protected function getHeaders()
     {
+
         return array(
-            'MIME-Version' => '1.0',
-            'Content-type' => 'Application/PTI56',
+            'MIME-Version' => '1.1',
+            'Content-type' => 'Application/PTI52',
             'Content-transfer-encoding' => 'text',
             'Request-number' => '1',
-            'Document-type' => 'Request'
+            'Document-type' => 'Request',
+            'Interface-Version' => 'ExtremeCMS 1.1',
+            'Connection' => 'close'
         );
     }
 
