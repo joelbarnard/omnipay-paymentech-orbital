@@ -45,7 +45,7 @@ abstract class NewOrderRequest extends AbstractRequest
          //   $newOrder->AVScity            = $card->getBillingCity();
          //   $newOrder->AVSstate           = $card->getBillingState();
          //   $newOrder->AVSphoneNum        = $card->getBillingPhone();
-            $newOrder->AVSname            = $card->getBillingName();
+            $newOrder->AVSname            = str_replace("&", "", $card->getBillingName());
          //   $newOrder->AVScountryCode     = $card->getBillingCountry();
 
         //    $newOrder->AVSDestzip         = $card->getShippingPostcode();
