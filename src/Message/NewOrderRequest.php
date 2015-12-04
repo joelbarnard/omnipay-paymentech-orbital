@@ -63,7 +63,7 @@ abstract class NewOrderRequest extends AbstractRequest
 
         $newOrder->OrderID   = $this->getOrderId();
         $newOrder->Amount    = $this->getAmountInteger();
-        $newOrder->Comments = substr($this->getComments(), 0, 64);
+        $newOrder->Comments = str_replace("&", "", substr($this->getComments(), 0, 64));
         //$newOrder->Comments  = $this->getComments();
       //  $newOrder->TxRefNum = $this->getTxRefNum();
 
