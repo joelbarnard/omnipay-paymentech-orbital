@@ -3,11 +3,17 @@
 namespace Omnipay\PaymentechOrbital;
 
 use Omnipay\Common\AbstractGateway;
+use Guzzle\Http\Client as HttpClient;
 
 /**
  * Paymentech Orbital Gateway
  *
  * @link https://secure.paymentech.com/developercenter/pages/home
+ * @method \Omnipay\Common\Message\ResponseInterface completeAuthorize(array $options = [])
+ * @method \Omnipay\Common\Message\ResponseInterface completePurchase(array $options = [])
+ * @method \Omnipay\Common\Message\ResponseInterface createCard(array $options = [])
+ * @method \Omnipay\Common\Message\ResponseInterface updateCard(array $options = [])
+ * @method \Omnipay\Common\Message\ResponseInterface deleteCard(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
@@ -145,4 +151,21 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\PaymentechOrbital\Message\ReversalRequest', $parameters);
     }
+
+
+    /**
+     * Get the global default HTTP client.
+     *
+     * @return HttpClient
+     */
+    protected function getDefaultHttpClient()
+    {
+        return new HttpClient(
+            '',
+            array(
+                'curl.options' => array(CURLOPT_CONNECTTIMEOUT => 60, CURLOPT_SSLVERSION => 'TLSv1.2'),
+            )
+        );
+    }
+
 }
